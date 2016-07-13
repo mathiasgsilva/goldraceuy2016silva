@@ -1,0 +1,105 @@
+open C:\Users\Androide1\Documents\Mathias\Maestría\serietopicos\serie.csv 
+setobs 1 1991 --time-series
+#store C:\Users\Androide1\Documents\Mathias\Maestría\serietopicos\serie.gdt
+setinfo unihsrelsup --description="Oferta Relativa Univ. Equiv./Sec. Equiv." --graph-name="Of. Univ. Equiv./Sec. Equiv."
+setinfo bachdropssup --description="Oferta Relativa Sec. Comp./Sec. Inc." --graph-name="Of. Sec. Comp./Sec. Inc."
+setinfo relwuni --description="Diferencial Salarial Univ. Equiv./Sec. Equiv." --graph-name="Dif. Sal. Univ. Equiv./Sec. Equiv."
+setinfo relwbach --description="Diferencial Salarial Sec. Comp./Sec. Inc." --graph-name="Dif. Sal. Sec. Comp./Sec. Inc."
+#SERIES DE DIFERENCIALES SALARIALES
+#gnuplot relwuni relwbach --time-series --with-lines { set title 'Serie Diferenciales Salariales'; } --output=display 
+#SERIES DE OFERTAS RELATIVAS
+#gnuplot unihsrelsup bachdropssup --time-series --with-lines { set title 'Serie Ofertas Relativas'; } --output=display 
+#SERIES DE LOG-OFERTAS RELATIVAS
+logs unihsrelsup bachdropssup
+#gnuplot l_unihsrelsup l_bachdropssup --time-series --with-lines { set title 'Serie Log-Ofertas Relativas'; } --output=display 
+###########################################
+###########################################
+#SERIE DE DIFERENCIAL UNIVERSIDAD EQUIVALENTE/SECUNDARIA EQUIVALENTE Y OFERTA RELATIVA
+#gnuplot unihsrelsup relwuni --time-series --with-lines { set title 'Serie Diferencial Salarial y Oferta Relativa Universidad Equivalente/Secundaria Equivalente'; } --output=display 
+#Modelo 1: diferencial univ. equiv/secundaria equivalente ~ constante+log-of. rel.
+ols relwuni 0 l_unihsrelsup
+series uh1 = $uhat 
+fcast 1991 2014 f1
+setinfo uh1 --description="Residuos de modelo 1" --graph-name=""
+normtest uh1 --jbera
+corrgm uh1 12
+#Modelo 2: diferencial univ. equiv/secundaria equivalente ~ constante+log-of. rel.+tendencia lineal
+ols relwuni 0 l_unihsrelsup ano
+series uh2 = $uhat
+fcast 1991 2014 f2 
+setinfo uh2 --description="Residuos de modelo 2" --graph-name=""
+normtest uh2 --jbera
+corrgm uh2 12
+gnuplot uh2 --time-series --with-lines --output=display 
+#Modelo 3: diferencial univ. equiv/secundaria equivalente ~ constante+log-of. rel.+tendencia lineal+control por 1999 a 2010
+series periododos = (ano=1999) || (ano=2000) || (ano=2001) || (ano=2002) || (ano=2003) || (ano=2004) || (ano=2005) || (ano=2006) || (ano=2007) || (ano=2008) || (ano=2009) || (ano=2010)
+ols relwuni 0 l_unihsrelsup ano periododos
+series uh3 = $uhat 
+fcast 1991 2014 f3
+setinfo uh3 --description="Residuos de modelo 3" --graph-name=""
+normtest uh3 --jbera
+corrgm uh3 12
+gnuplot uh3 --time-series --with-lines --output=display 
+#Modelo 4: diferencial univ. equiv/secundaria equivalente ~ log-of. rel.+tendencia lineal
+ols relwuni l_unihsrelsup ano
+series uh4 = $uhat 
+fcast 1991 2014 f4
+setinfo uh4 --description="Residuos de modelo 4" --graph-name=""
+normtest uh4 --jbera
+corrgm uh4 12
+gnuplot uh4 --time-series --with-lines --output=display 
+#Modelo 5: diferencial univ. equiv/secundaria equivalente ~ constante+log-of. rel.+tendencia lineal+pos 2008
+series periodotres = (ano=2008) || (ano=2009) || (ano=2010) || (ano=2011) || (ano=2012) || (ano=2013) || (ano=2014)
+ols relwuni 0 l_unihsrelsup ano periodotres
+series uh5 = $uhat 
+fcast 1991 2014 f5
+setinfo uh5 --description="Residuos de modelo 5" --graph-name=""
+normtest uh5 --jbera
+corrgm uh5 12
+gnuplot uh5 --time-series --with-lines --output=display 
+#Modelo 6: diferencial univ. equiv/secundaria equivalente ~ log-of. rel.
+ols relwuni l_unihsrelsup
+series uh6 = $uhat 
+fcast 1991 2014 f6
+setinfo uh6 --description="Residuos de modelo 6" --graph-name=""
+normtest uh6 --jbera
+corrgm uh6 12
+gnuplot uh6 --time-series --with-lines --output=display 
+gnuplot relwuni f1 f2 f3 f4 f5 f6 --time-series --with-lines --output=display
+####################################
+####################################
+#SERIE DE DIFERENCIAL SEC. COMPLETA/0 a 11 Y OFERTA RELATIVA
+#gnuplot bachdropssup relwbach --time-series --with-lines { set title 'Serie Diferencial Salarial y Oferta Relativa Sec. Completa/Secundaria Inc.'; } --output=display 
+#Modelo 7: diferencial sec. comp./sec. inc. ~ constante+log-of. rel.
+ols relwbach 0 l_bachdropssup
+series uh7 = $uhat 
+fcast 1991 2014 f7
+setinfo uh7 --description="Residuos de modelo 7" --graph-name=""
+normtest uh7 --jbera
+corrgm uh7 12
+#Modelo 8: diferencial sec. comp./sec. inc. ~ constante+log-of. rel.+tendencia lineal
+ols relwbach 0 l_bachdropssup ano
+series uh8 = $uhat 
+fcast 1991 2014 f8
+setinfo uh8 --description="Residuos de modelo 8" --graph-name=""
+normtest uh8 --jbera
+corrgm uh8 12
+gnuplot uh8 --with-lines --time-series --output=display
+#Modelo 9: diferencial sec. comp./sec. inc. ~ constante+log-of. rel.+tendencia lineal+control por 2005
+series dosmilcinco = (ano=2005)
+ols relwbach 0 l_bachdropssup ano dosmilcinco
+series uh9 = $uhat 
+fcast 1991 2014 f9
+setinfo uh9 --description="Residuos de modelo 9" --graph-name=""
+normtest uh9 --jbera
+corrgm uh9 12
+gnuplot uh9 --time-series --with-lines --output=display 
+#Modelo 10: diferencial sec. comp./sec. inc. ~ log-of. rel.
+ols relwbach bachdropssup
+series uh10 = $uhat 
+fcast 1991 2014 f10
+setinfo uh10 --description="Residuos de modelo 6" --graph-name=""
+normtest uh10 --jbera
+corrgm uh10 12
+gnuplot uh10 --time-series --with-lines --output=display 
+gnuplot relwuni f7 f8 f9 f10 --time-series --with-lines --output=display

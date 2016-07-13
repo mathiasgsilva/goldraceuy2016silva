@@ -1,0 +1,120 @@
+\documentclass[12pt,a4paper,notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage{times}
+\usepackage{multirow}
+\usepackage[left=3cm,right=3cm,top=3cm,bottom=3cm]{geometry}
+\usepackage{float}
+\usepackage{setspace}
+\usepackage{enumitem}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+\makeatletter
+\def\@seccntformat#1{%
+  \expandafter\ifx\csname c@#1\endcsname\c@section\else
+  \csname the#1\endcsname\quad
+  \fi}
+\makeatother
+
+
+\begin{document}
+\definecolor{ttzzqq}{rgb}{0.2,0.6,0.}
+\definecolor{zzttqq}{rgb}{0.6,0.2,0.}
+\definecolor{ccqqqq}{rgb}{0.8,0.,0.}
+\definecolor{xdxdff}{rgb}{0.49019607843137253,0.49019607843137253,1.}
+\definecolor{qqqqff}{rgb}{0.,0.,1.}
+\definecolor{ffqqqq}{rgb}{1.,0.,0.}
+\definecolor{uququq}{rgb}{0.25098039215686274,0.25098039215686274,0.25098039215686274}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+
+
+\thispagestyle{empty} 
+
+
+\section*{Ejercicio I}
+\noindent El enunciado es falso. Primero que nada, las asignaciones eficientes pueden no resultar equitativas bajo determinados criterios normativos, por lo que incluso si el mercado logra asignaciones eficientes, la intervención del gobierno puede estar justificada en cuanto se considere que dichas asignaciones sean injustas. Por otro lado, el enunciado es ciertamente válido en el contexto del Primer Teorema del Bienestar, y por lo tanto su generalidad sólo aplica a los casos donde las condiciones para el cumplimiento del teorema aplica, i.e., ausencia de ``fallas de mercado'', por lo que incluso si el único objetivo deseable es el de lograr asignaciones eficientes, la intervención del gobierno esta justificada si atiende a fallas de los mercados. Por último, la racionalidad de los agentes es imperfecta en muchos escenarios, e.g., la miopía en el ahorro previsional, desconocimiento de los costos de oportunidad de consumir bienes de mala calidad, entre otros, y la intervención del gobierno puede por ello justificarse desde una óptica paternalista, ya sea mediante controles en los mercados o provisión propia de bienes y servicios.\\
+
+\section*{Ejercicio II}
+\noindent La elección del método para evaluar el impacto de un programa como este no es una cuestión trivial, y sin conocer aspectos importantes del diseño de la política, en particular el criterio de asignación, se deben hacer supuestos al respecto para la identificación de los parámetros de interés. En este caso, podría explotarse el hecho de que la variación entre el momento inicial y el momento final de la variable de resultado, el salario promedio, de los grupos fue de una magnitud menor para el grupo de tratados que para el de control. Si se puede suponer que, de no haber existido el programa, la variación en dicha variable para cada grupo hubiera sido la misma, y por lo tanto hubieran seguido una tendencia paralela en el tiempo, y que dicha tendencia paralela también se evidencia previo a la aplicación de la política, entonces el método de Diferencias-en-Diferencias brinda un marco analítico válido para la identificación y estimación del efecto del programa sobre los tratados. Hechos estos supuestos de identificación, la variación en la variable de resultados entre el momento inicial y el momento final para el grupo de control puede tomarse como un contrafactual válido para el grupo de tratados de no haber sido expuesto al programa, y por tanto la estimación del efecto será equivalente a la diferencia entre la variación observada en el salario promedio del grupo de tratados menos la variación observada para el grupo de control.\\
+
+\section*{Ejercicio III} 
+\subsection*{a)}
+El equilibrio incial viene dado para el precio resultante de la igualación de las cantidades ofrecidas y las cantidades demandadas de la siguiente forma:
+\begin{equation}
+Q ^{D}=Q^{S} \Rightarrow 50-3P=2P \Rightarrow P^{*}=10 \Rightarrow Q^{*}=20
+\end{equation}
+Si se aplica un impuesto de $\frac{5}{3}$ por manzana al consumidor, el precio que enfrenta por manzana pasa a ser $P+\frac{5}{3}$ por lo que el nuevo equilibrio se da en:
+\begin{equation}
+Q ^{D}=Q^{S} \Rightarrow 50-3(P+\frac{5}{3})=2P \Rightarrow P^{*}=9 \Rightarrow P^{D}=9+\frac{5}{3} \Rightarrow Q^{*}=18
+\end{equation}\\
+
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1.0cm,y=1.0cm]
+\draw[->,color=black] (-0.45146241574167195,0.) -- (35.45384609565325,0.);
+\foreach \x in {,2.,4.,6.,8.,10.,12.,14.,16.,18.,20.,22.,24.,26.,28.,30.,32.,34.}
+\draw[shift={(\x,0)},color=black] (0pt,2pt) -- (0pt,-2pt) node[below] {\footnotesize $\x$};
+\draw[->,color=black] (0.,-1.1171238182569587) -- (0.,26.658680879237238);
+\foreach \y in {,2.,4.,6.,8.,10.,12.,14.,16.,18.,20.,22.,24.,26.}
+\draw[shift={(0,\y)},color=black] (2pt,0pt) -- (-2pt,0pt) node[left] {\footnotesize $\y$};
+\draw[color=black] (0pt,-10pt) node[right] {\footnotesize $0$};
+\clip(-0.45146241574167195,-1.1171238182569587) rectangle (35.45384609565325,26.658680879237238);
+\fill[color=ccqqqq,fill=ccqqqq,fill opacity=0.5] (18.,10.666666666666668) -- (20.,10.) -- (18.,10.) -- cycle;
+\fill[color=zzttqq,fill=zzttqq,fill opacity=0.65] (20.,10.) -- (18.,9.) -- (18.,10.) -- cycle;
+\fill[color=ttzzqq,fill=ttzzqq,fill opacity=0.65] (0.,10.666666666666666) -- (0.,10.) -- (18.,10.) -- (18.,10.666666666666668) -- cycle;
+\fill[color=xdxdff,fill=xdxdff,fill opacity=0.65] (0.,10.) -- (0.,9.) -- (18.,9.) -- (18.,10.) -- cycle;
+\draw [dash pattern=on 6pt off 6pt] (20.,10.)-- (20.,0.);
+\draw [dash pattern=on 6pt off 6pt] (20.,10.)-- (0.,10.);
+\draw [dash pattern=on 6pt off 6pt] (0.,9.)-- (18.,9.);
+\draw [dash pattern=on 6pt off 6pt] (18.,10.666666666666668)-- (0.,10.666666666666666);
+\draw [dash pattern=on 6pt off 6pt] (18.,10.666666666666668)-- (18.,0.);
+\draw [color=ffqqqq] (0.,16.666666666666668)-- (50.,0.);
+\draw [color=qqqqff,domain=-0.0:35.45384609565325] plot(\x,{(-0.--24.48825156807567*\x)/48.97650313615134});
+\draw [dash pattern=on 6pt off 6pt,color=ffqqqq] (0.,15.)-- (45.,0.);
+\draw [color=ccqqqq] (18.,10.666666666666668)-- (20.,10.);
+\draw [color=ccqqqq] (20.,10.)-- (18.,10.);
+\draw [color=ccqqqq] (18.,10.)-- (18.,10.666666666666668);
+\draw [color=zzttqq] (20.,10.)-- (18.,9.);
+\draw [color=zzttqq] (18.,9.)-- (18.,10.);
+\draw [color=zzttqq] (18.,10.)-- (20.,10.);
+\draw [color=ttzzqq] (0.,10.666666666666666)-- (0.,10.);
+\draw [color=ttzzqq] (0.,10.)-- (18.,10.);
+\draw [color=ttzzqq] (18.,10.)-- (18.,10.666666666666668);
+\draw [color=ttzzqq] (18.,10.666666666666668)-- (0.,10.666666666666666);
+\draw [color=xdxdff] (0.,10.)-- (0.,9.);
+\draw [color=xdxdff] (0.,9.)-- (18.,9.);
+\draw [color=xdxdff] (18.,9.)-- (18.,10.);
+\draw [color=xdxdff] (18.,10.)-- (0.,10.);
+\draw (18.39882455274066,10.031312372504006) node[anchor=north west] {A};
+\draw (18.147487393160898,10.793598607769713) node[anchor=north west] {B};
+\draw (6.765504595048708,10.745955718065606) node[anchor=north west] {C};
+\draw (6.801409903560103,9.888383703391685) node[anchor=north west] {D};
+\begin{scriptsize}
+\draw [fill=uuuuuu] (20.,0.) circle (1.5pt);
+\draw [fill=uuuuuu] (20.,10.) circle (1.5pt);
+\draw [fill=uuuuuu] (0.,10.) circle (1.5pt);
+\draw [fill=uuuuuu] (0.,9.) circle (1.5pt);
+\draw [fill=uuuuuu] (0.,10.666666666666666) circle (1.5pt);
+\draw [fill=uuuuuu] (18.,10.666666666666668) circle (1.5pt);
+\draw [fill=uuuuuu] (18.,9.) circle (1.5pt);
+\draw [fill=uququq] (18.,0.) circle (1.5pt);
+\draw [fill=uuuuuu] (0.,16.666666666666668) circle (1.5pt);
+\draw [fill=uuuuuu] (50.,0.) circle (1.5pt);
+\draw[color=ffqqqq] (24.933590701814534,7.982668115227418) node {$D$};
+\draw[color=qqqqff] (25.11311724437151,12.365813968005234) node {$S$};
+\draw [fill=uuuuuu] (0.,15.) circle (1.5pt);
+\draw [fill=uuuuuu] (45.,0.) circle (1.5pt);
+\draw[color=ffqqqq] (22.563840340062473,7.172738990257605) node {$D'$};
+\draw [fill=xdxdff] (18.,10.) circle (2.5pt);
+\end{scriptsize}
+\end{tikzpicture}
+
+
+\end{document}
